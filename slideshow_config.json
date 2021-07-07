@@ -1,0 +1,11 @@
+{"folder_directory": "C:\\Users\\matth\\OneDrive\\Documents\\python_projects\\slideshow\\test_images\\bmp images\\complex",
+"font_directory": null,
+"font_size": 200,
+"end_message": "End",
+"end_message_color": [255, 255, 255],
+"fade_to_from": [0, 0, 0],
+"fade_amount": 3,
+"FPS": 60,
+"picture_display_time": 5,
+"loop": "no"
+}
