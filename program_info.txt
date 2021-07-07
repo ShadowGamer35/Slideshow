@@ -4,7 +4,7 @@ Slideshow controls.
 
 For "slideshow_config.json".
     1a. folder_directory is the directory path for the desired folder.
-    1b. Back-slashes have to be replaced with forward-slashes.
+    1b. Back-slashes have to be replaced with forward-slashes or double back-slashes.
 
     2a. font_directory is the directory path for the desired font.
       2a. "null" is the default pygame font
