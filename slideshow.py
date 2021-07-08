@@ -13,12 +13,12 @@ class Slideshow:
         pygame.mouse.set_visible(False)
 
         # Open, load, and associate the contents of the file with a variable.
-        with open('slideshow_config.json') as f:
-            try:
+        try:
+            with open('slideshow_config.json') as f:
                 self.config = json.load(f)
-            except json.decoder.JSONDecodeError as error:
-                print(f"---\nError: Decode error with 'slideshow_config.json'.\nMake sure there are not any misplaced or extra characters in the file.\n\nOutput: {error}\n---")
-                exit()
+        except json.decoder.JSONDecodeError as error:
+            input(f"---\nError: Decode error with 'slideshow_config.json'.\nMake sure there are not any misplaced or extra characters in the file.\n\nOutput: {error}\n---\n\nHit Enter to close the program.")
+            exit()
 
         try:
             # Create variables for each value in the config.
@@ -35,7 +35,7 @@ class Slideshow:
             self.loop = self.config['loop']
             
         except KeyError as error:
-            print(f"---\nError: Couldn't find {error} in 'slideshow_config.json'.\n---")
+            input(f"---\nError: Couldn't find {error} in 'slideshow_config.json'.\n---\n\nHit Enter to close the program.")
             exit()
 
         # Create the other variables.
@@ -44,7 +44,6 @@ class Slideshow:
         self.wait_time = 0
         self.paused = False
         self.check_number = 0
-        self.picture = None
         self.alpha_value = 0
         self.fade = 'in'
 
@@ -60,7 +59,7 @@ class Slideshow:
                 picture_dir = folder_dir + '/' + picture
                 picture_dirs.append(picture_dir)
         except FileNotFoundError:
-            print("---\nError: Not a valid folder directory.\n---")
+            input("---\nError: Not a valid folder directory.\n---\n\nHit Enter to close the program.")
             exit()
 
         # Load each image, if there's an issue loading the image, just skip it.
@@ -71,11 +70,10 @@ class Slideshow:
                 load_picture = pygame.image.load(picture).convert_alpha()
 
             except pygame.error as error:
-
-                print(f"---\n{error}.\n---")
+                print(f"\n---{error}.---\n")
 
             except FileNotFoundError as error:
-                print(f"---\nCan't process folders.\n---")
+                print(f"\n---Can't process folders.---\n")
 
             else:
                 load_picture_rect = load_picture.get_rect()
@@ -105,19 +103,19 @@ class Slideshow:
         try:
             font = pygame.font.Font(font_dir, font_size)
         except FileNotFoundError:
-            print("---\nError: Not a valid font directory.\n---")
+            input("---\nError: Not a valid font directory.\n---\n\nHit Enter to close the program.")
             exit()
         except OverflowError:
-            print("---\nError: Font size is to big.\n---")
+            input("---\nError: Font size is to big.\n---\n\nHit Enter to close the program.")
             exit()
 
         try:
             end_text = font.render(text, True, color, self.fade_color)
         except ValueError:
-            print("---\nError: RGB color values have to be 0 to 255.\n---")
+            input("---\nError: RGB color values have to be 0 to 255.\n---\n\nHit Enter to close the program.")
             exit()
         except TypeError:
-            print("---\nError: end_message must be a string.\n---")
+            input("---\nError: end_message must be a string.\n---\n\nHit Enter to close the program.")
             exit()
 
         end_text.set_alpha(0, pygame.RLEACCEL)
